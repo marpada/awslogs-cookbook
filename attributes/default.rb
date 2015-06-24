@@ -1,0 +1,9 @@
+default['awslogs_agent']['version'] = '1.3.1'
+default['awslogs_agent']['path'] = '/var/awslogs'
+default['awslogs_agent']['plugin_url'] = 'http://aws-cloudwatch.s3-website-us-east-1.amazonaws.com'
+default['awslogs_agent']['region'] = 'us-east-1'
+default['awslogs_agent']['user'] = 'root'
+default['awslogs_agent']['group'] = 'root'
+default['awslogs_agent']['service'] = 'awslogs'
+default['awslogs_agent']['databag'] = nil
+default['awslogs_agent']['streams'] = {}

@@ -1,0 +1,10 @@
+name             'awslogs-agent'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures awslogs-agent'
+long_description 'Installs/Configures awslogs-agent'
+version          '0.1.0'
+
+supports 'ubuntu'
+depends 'python', '~> 1.4.6'
