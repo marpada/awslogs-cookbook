@@ -7,4 +7,7 @@ long_description 'Installs/Configures awslogs-agent'
 version          '0.1.0'
 
 supports 'ubuntu'
+supports 'debian'
+supports 'centos'
+supports 'redhat'
 depends 'python', '~> 1.4.6'

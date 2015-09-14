@@ -86,6 +86,7 @@ end
 
 link '/var/log/awslogs.log' do
   to "/var/log/upstart/#{node['awslogs_agent']['service']}.log"
+  only_if 'test -d  /var/log/upstart'
 end
 
 
