@@ -7,8 +7,7 @@ describe process("aws") do
 end
 
 describe service("awslogs") do
-  it { should be_enabled}
-  it { should be_running}
+  it { should be_running.under('upstart')}
 end
 
 describe file("/var/awslogs/etc/awslogs.conf") do
