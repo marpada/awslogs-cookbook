@@ -1,0 +1,19 @@
+# awslogs : Manage awslogs agent
+description "awslogs agent"
+author      "David Pando"
+
+start on filesystem or runlevel [2345]
+stop on shutdown
+
+respawn
+respawn limit 99 5
+
+script
+
+export AWS_CONFIG_FILE=<%= @path %>/etc/aws.conf
+<% if @user != 'root' %>
+<% prefix="sudo -u #{@user} " %>
+<% end %>
+exec <%= prefix %> /bin/nice -n 4 <%= @path %>/bin/aws logs push --config-file <%= @path %>/etc/awslogs.conf &> /var/log/awslogs.log
+
+end script
