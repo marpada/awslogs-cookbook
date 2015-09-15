@@ -57,7 +57,7 @@ end
 template "#{node['awslogs_agent']['path']}/etc/aws.conf" do
   owner 'root'
   group 'root'
-  mode '0755'
+  mode '0640'
   source 'etc/aws.conf.erb'
   variables(
     :region => node['awslogs_agent']['region'],
@@ -70,7 +70,7 @@ end
 template "#{node['awslogs_agent']['path']}/etc/awslogs.conf" do
   owner 'root'
   group 'root'
-  mode '0755'
+  mode '0644'
   source 'etc/awslogs.conf.erb'
   variables(
     :streams => node['awslogs_agent']['streams'],

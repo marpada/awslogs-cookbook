@@ -10,10 +10,17 @@ describe service("awslogs") do
   it { should be_running.under('upstart')}
 end
 
+describe file("/var/awslogs/etc/aws.conf") do
+  it { should exist }
+  it { should be_file }
+  it { should be_owned_by 'root' }
+  it { should be_mode 640 }
+end
 describe file("/var/awslogs/etc/awslogs.conf") do
   it { should exist }
   it { should be_file }
   it { should be_owned_by 'root' }
+  it { should be_mode 644 }
   its(:content) { should match /\[ test.log \]/ }
   its(:content) { should match /file = \/var\/log\/test.log/ }
   its(:content) { should match /log_stream_name = {instance_id}/ }
