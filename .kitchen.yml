@@ -16,3 +16,10 @@ suites:
       - recipe[apt]
       - recipe[awslogs-agent::default]
     attributes:
+      awslogs_agent:
+        streams:
+          'test.log':
+            file: '/var/log/test.log'
+            log_group_name: 'test'
+            datetime_format: '%Y-%m-%d %H:%M:%S'
+            log_stream_name: '{instance_id}'
