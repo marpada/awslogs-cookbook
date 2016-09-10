@@ -75,11 +75,13 @@ to push the /var/log/syslog:
       "awslogs_agent": {
         "streams": {
           "syslog": {
-            "file": '/var/log/syslog',
-            "log_group_name": '/var/log/syslog',
-            "datetime_format": '%Y-%m-%d %H:%M:%S',
-            "log_stream_name": '{instance_id}',
+            "file": "/var/log/syslog",
+            "log_group_name": "/var/log/syslog",
+            "datetime_format": "%Y-%m-%d %H:%M:%S",
+            "log_stream_name": "{instance_id}"
           }
+        }
+      }
 ```
 
 To read AWS credentials from a databag set the
