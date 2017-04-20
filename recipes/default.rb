@@ -15,7 +15,7 @@
   end
 end
 
-include_recipe 'python'
+include_recipe 'poise-python'
 
 python_virtualenv node['awslogs_agent']['path'] do
   action :create
@@ -23,12 +23,8 @@ python_virtualenv node['awslogs_agent']['path'] do
   group node['awslogs_agent']['group']
 end
 
-python_pip "pip" do
-  virtualenv node['awslogs_agent']['path']
-  version "6.1.1"
-end
 
-python_pip "awscli-cwlogs" do
+python_package "awscli-cwlogs" do
   virtualenv node['awslogs_agent']['path']
   version node['awslogs_agent']['version']
   options "--extra-index-url=#{node['awslogs_agent']['plugin_url']}"
