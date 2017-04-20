@@ -19,7 +19,7 @@ include_recipe 'poise-python'
 
 python_virtualenv node['awslogs_agent']['path'] do
   action :create
-  owner node['awslogs_agent']['user']
+  user node['awslogs_agent']['user']
   group node['awslogs_agent']['group']
 end
 
