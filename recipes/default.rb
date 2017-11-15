@@ -58,7 +58,7 @@ template "#{node['awslogs_agent']['path']}/bin/awslogs-agent-launcher.sh" do
   source 'var/awslogs-agent-launcher.erb'
   owner 'root'
   group 'root'
-  mode '0644'
+  mode '0700'
   variables(
     :user => node['awslogs_agent']['user'],
     :path => node['awslogs_agent']['path']
