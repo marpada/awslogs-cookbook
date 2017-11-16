@@ -30,10 +30,12 @@ python_package "awscli-cwlogs" do
   options "--extra-index-url=#{node['awslogs_agent']['plugin_url']}"
 end
 
+using_systemd = false
 destination_folder = ''
 source_file = ''
 if  'ubuntu' == node['platform']
   if Chef::VersionConstraint.new('>= 15.04').include?(node['platform_version'])
+    using_systemd = true
     destination_folder = "/lib/systemd/system/#{node['awslogs_agent']['service']}.service"
     source_file = "etc/systemd/awslogs_daemon.service.erb"
   elsif Chef::VersionConstraint.new('>= 12.04').include?(node['platform_version'])
@@ -54,15 +56,17 @@ template destination_folder do
   notifies :restart, "service[#{node['awslogs_agent']['service']}]"
 end
 
-template "#{node['awslogs_agent']['path']}/bin/awslogs-agent-launcher.sh" do
-  source 'var/awslogs-agent-launcher.erb'
-  owner 'root'
-  group 'root'
-  mode '0700'
-  variables(
-    :user => node['awslogs_agent']['user'],
-    :path => node['awslogs_agent']['path']
-  )
+if using_systemd
+  template "#{node['awslogs_agent']['path']}/bin/awslogs-agent-launcher.sh" do
+    source 'var/awslogs-agent-launcher.erb'
+    owner 'root'
+    group 'root'
+    mode '0700'
+    variables(
+      :user => node['awslogs_agent']['user'],
+      :path => node['awslogs_agent']['path']
+    )
+  end
 end
 
 
